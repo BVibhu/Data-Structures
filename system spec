@@ -1,0 +1,33 @@
+#include<sys/sysinfo.h>
+#include<sys/utsname.h>
+#include<stdio.h>
+
+
+/*struct sysinfo
+{
+	long uptime;
+	unsigned long freeram;
+	unsigned long totalram;
+	unsigned long shareram;
+	unsigned long bufferram;
+	unsigned long totalswap;
+	unsigned long freeswap;
+	unsigned long loads[3];	
+	unsigned short procs;
+};
+*/
+int main()
+{
+	struct sysinfo info;
+	struct utsname us;
+
+	int n=uname(&us);
+
+	printf("Free memory %f",info.freeram/(1024*1024));
+	printf("\nTotal ram: %ld",info.totalram/(1024*1024));
+	printf("\nProcess: %d",info.procs);
+	printf("\nKernel version: %s",us.version);
+	printf("\nCPU type: %s",us.sysname);
+	printf("\nModel: %s",us.release);
+	return 0;
+}
